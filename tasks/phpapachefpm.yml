@@ -1,0 +1,26 @@
+---
+
+- name: install apache
+  apt: name=apache2 state=present
+
+- name: install PHP and module
+  apt: name='{{ item }}' state=present
+  with_items:
+    - php5-cli
+    - php5-fpm
+    - php5-gd
+    - php5-ldap
+    - php5-mysql
+    - php5-curl
+
+- name: copy default timezone (fpm)
+  copy: dest=/etc/php5/fpm/conf.d/timezone.ini content="date.timezone = Europe/Copenhagen"
+#  notify: restart php
+
+- name: start php
+  service: name=php5-fpm state=started enabled=yes
+
+- name: copy default timezone (cli)
+  copy: dest=/etc/php5/cli/conf.d/timezone.ini content="date.timezone = Europe/Copenhagen"
+
+

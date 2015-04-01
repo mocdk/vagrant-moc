@@ -1,0 +1,13 @@
+---
+
+
+- name: install redis and php client
+  apt: name='{{ item }}' state=present
+  with_items:
+    - redis-server
+    - redis-tools
+    - php5-redis
+
+
+
+

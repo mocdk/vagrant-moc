@@ -1,0 +1,36 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+    zsh_theme: steeef
+
+  tasks:
+    - include: tasks/dotdeb.yml
+    - include: tasks/phpapachefpm.yml
+    - name: install mysql
+      apt: name=mysql-server state=present
+    - include: tasks/redis.yml
+    - include: tasks/memcache.yml
+    - name: install git
+      apt: name=git-core
+    - include: tasks/zsh.yml
+
+
+
+
+# Mangler
+# * Varnish
+# * Stillingtagen til php-fpm brugere (default www-data, skal det hellere være vagrant?)
+# * NFS mounts
+# * php-fpm instillinger
+# * Tomcat + Solr
+# * Elasticsearch
+# * Beanstalkd
+# * Supervisor?
+# * [DONE] zsh med oh-my-zsh
+# * Def pakker (vim, emacs htop etc)
+# * npm
+# * grunt
+# * compass
+# * git!
+# * mongo

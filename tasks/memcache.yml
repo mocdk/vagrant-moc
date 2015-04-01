@@ -1,0 +1,8 @@
+---
+
+
+- name: install memcache and php client
+  apt: name='{{ item }}' state=present
+  with_items:
+    - memcached
+    - php5-memcached
