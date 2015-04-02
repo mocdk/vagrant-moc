@@ -4,7 +4,10 @@
   apt: name=zsh
 
 - name: Clone oh-my-zsh repo
-  git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/vagrant/.oh-my-zsh
+  git:
+    repo=https://github.com/robbyrussell/oh-my-zsh.git
+    dest=/home/vagrant/.oh-my-zsh
+    update=no
 
 - name: deploy .zshrc
   template: src=zshrc.j2 dest=/home/vagrant/.zshrc owner=vagrant

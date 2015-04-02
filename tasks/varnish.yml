@@ -1,0 +1,21 @@
+---
+
+
+- name: Install Varnish
+  apt: name=varnish state=present
+
+- name: Install default Varnish
+  template:
+    src=varnish.vcl.j2
+    dest=/etc/varnish/default.vcl
+    owner=root
+  notify:
+    - restart varnish
+
+- name: Install varnish conf (/etc/default/varnish)
+  template:
+    src=varnish-default.j2
+    dest=/etc/default/varnish
+    owner=root
+  notify:
+    - restart varnish

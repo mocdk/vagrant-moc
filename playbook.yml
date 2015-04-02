@@ -2,7 +2,16 @@
 - hosts: all
   sudo: true
   vars:
-    zsh_theme: steeef
+    zsh_theme: robbyrussell
+    apache_port: 8080
+
+  handlers:
+    - name: reload apache
+      service: name=apache2 state=reloaded
+    - name: restart php
+      service: name=php5-fpm state=restarted
+    - name: restart varnish
+      service: name=varnish state=restarted
 
   tasks:
     - include: tasks/dotdeb.yml
@@ -14,7 +23,7 @@
     - name: install git
       apt: name=git-core
     - include: tasks/zsh.yml
-
+    - include: tasks/varnish.yml
 
 
 

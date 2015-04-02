@@ -1,5 +1,9 @@
 ---
 
+- name: dotdeb | install key
+  apt_key: url=http://www.dotdeb.org/dotdeb.gpg
+  tags: dotdeb
+
 - name: dotdeb | add main repository
   apt_repository: repo='{{ item }}' update_cache=yes
   with_items:
@@ -14,6 +18,6 @@
     - deb-src http://packages.dotdeb.org wheezy-php55 all
   tags: dotdeb
 
-- name: dotdeb | install key
-  apt_key: url=http://www.dotdeb.org/dotdeb.gpg
-  tags: dotdeb
+- name: dotdeb | Update apt cache
+  apt: update_cache=yes
+

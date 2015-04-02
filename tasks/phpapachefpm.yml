@@ -13,14 +13,29 @@
     - php5-mysql
     - php5-curl
 
+- name: Move Apache to port 8080
+  template:
+    src=ports.j2
+    dest=/etc/apache2/ports.conf owner=root
+  notify:
+    - reload apache
+
+- name: Update default vhost to port 8080
+  template:
+    src=default-vhost.j2
+    dest=/etc/apache2/sites-available/default
+  notify:
+    - reload apache
+
 - name: copy default timezone (fpm)
   copy: dest=/etc/php5/fpm/conf.d/timezone.ini content="date.timezone = Europe/Copenhagen"
-#  notify: restart php
+  notify: restart php
+
+- name: copy default timezone (cli)
+  copy: dest=/etc/php5/cli/conf.d/timezone.ini content="date.timezone = Europe/Copenhagen"
 
 - name: start php
   service: name=php5-fpm state=started enabled=yes
 
-- name: copy default timezone (cli)
-  copy: dest=/etc/php5/cli/conf.d/timezone.ini content="date.timezone = Europe/Copenhagen"
 
 
