@@ -30,7 +30,7 @@
     - include: tasks/compass.yml
     - include: tasks/nodejs.yml
     - include: tasks/nfsserver.yml
-
+    - include: tasks/grunt.yml
 
 
 # Mangler
@@ -43,8 +43,8 @@
 # * Beanstalkd
 # * Supervisor?
 # * [DONE] zsh med oh-my-zsh
-# * Def pakker (vim, emacs htop etc)
-# * npm
+# * Std. pakker (vim, emacs htop etc)
+# * [DONE] npm
 # * grunt
 # * compass
 # * git! (I nyere version?)
