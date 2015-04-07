@@ -1,0 +1,4 @@
+---
+
+- name: Update default apt sources
+  template: src=apt_sources.j2 dest=/etc/apt/sources.list

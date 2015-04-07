@@ -1,7 +1,14 @@
 ---
 
 - name: install apache
-  apt: name=apache2 state=present
+  apt: name='{{ item }}' state=present
+  with_items:
+    - apache2
+    - apache2-mpm-worker
+    - libapache2-mod-fastcgi
+
+- name: Enable mod actions in apache
+  shell: a2enmod actions creates=/etc/apache2/mods-enabled/actions.load
 
 - name: install PHP and module
   apt: name='{{ item }}' state=present

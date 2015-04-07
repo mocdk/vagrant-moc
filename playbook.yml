@@ -16,6 +16,7 @@
       service: name=nfs-common state=restarted
 
   tasks:
+    - include: tasks/apt.yml
     - include: tasks/dotdeb.yml
     - include: tasks/backports.yml
     - include: tasks/phpapachefpm.yml
@@ -34,6 +35,7 @@
 
 
 # Mangler
+# * Opgradering til Apache 2.4 !!!
 # * [DONE] Varnish
 # * Stillingtagen til php-fpm brugere (default www-data, skal det hellere være vagrant?)
 # * [DONE] NFS mounts
@@ -45,7 +47,8 @@
 # * [DONE] zsh med oh-my-zsh
 # * Std. pakker (vim, emacs htop etc)
 # * [DONE] npm
-# * grunt
-# * compass
-# * git! (I nyere version?)
+# * [DONE] grunt
+# * [DONE] compass
+# * [DONE] git! (I nyere version?)
 # * mongo
+# * Refactor tasks to roles pattern
