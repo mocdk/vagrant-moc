@@ -20,6 +20,13 @@
     - php5-mysql
     - php5-curl
 
+- name: Enable fast cgi php handler by default
+  template:
+    src=fastcgi.j2
+    dest=/etc/apache2/mods-enabled/fastcgi_phpfpm.conf
+  notify:
+    - reload apache
+
 - name: Move Apache to port 8080
   template:
     src=ports.j2
@@ -40,6 +47,12 @@
 
 - name: copy default timezone (cli)
   copy: dest=/etc/php5/cli/conf.d/timezone.ini content="date.timezone = Europe/Copenhagen"
+
+- name: Remove default index.html file
+  file: path=/var/www/index.html state=absent
+
+- name: Copy default index.php file
+  template: src=index.php.j2 dest=/var/www/index.php
 
 - name: start php
   service: name=php5-fpm state=started enabled=yes
