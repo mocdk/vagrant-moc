@@ -12,9 +12,12 @@
       service: name=php5-fpm state=restarted
     - name: restart varnish
       service: name=varnish state=restarted
+    - name: restart nfs
+      service: name=nfs-common state=restarted
 
   tasks:
     - include: tasks/dotdeb.yml
+    - include: tasks/backports.yml
     - include: tasks/phpapachefpm.yml
     - name: install mysql
       apt: name=mysql-server state=present
@@ -24,13 +27,16 @@
       apt: name=git-core
     - include: tasks/zsh.yml
     - include: tasks/varnish.yml
+    - include: tasks/compass.yml
+    - include: tasks/nodejs.yml
+    - include: tasks/nfsserver.yml
 
 
 
 # Mangler
-# * Varnish
+# * [DONE] Varnish
 # * Stillingtagen til php-fpm brugere (default www-data, skal det hellere være vagrant?)
-# * NFS mounts
+# * [DONE] NFS mounts
 # * php-fpm instillinger
 # * Tomcat + Solr
 # * Elasticsearch
@@ -41,5 +47,5 @@
 # * npm
 # * grunt
 # * compass
-# * git!
+# * git! (I nyere version?)
 # * mongo

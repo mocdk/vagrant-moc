@@ -1,0 +1,4 @@
+---
+
+- name: Apt | Setup backports
+  apt_repository: repo='deb http://http.debian.net/debian wheezy-backports main'

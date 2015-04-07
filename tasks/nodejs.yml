@@ -1,0 +1,13 @@
+---
+
+
+- name: Nodejs | Install nodejs
+  apt: name='{{ item }}' default_release=wheezy-backports
+  with_items:
+    - nodejs
+    - nodejs-legacy
+  tags: nodejs
+
+- name: Nodejs | Install npm
+  shell: curl https://www.npmjs.com/install.sh | bash creates=/usr/bin/npm
+  tags: nodejs
