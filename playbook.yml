@@ -14,6 +14,8 @@
       service: name=varnish state=restarted
     - name: restart nfs
       service: name=nfs-common state=restarted
+    - name: restart elasticsearch
+      service: name=elasticsearch state=restarted
 
   tasks:
     - include: tasks/apt.yml
@@ -52,3 +54,4 @@
 # * [DONE] git! (I nyere version?)
 # * mongo
 # * Refactor tasks to roles pattern
+# * Mailcatcher [Sæt enten php eller maileragent]
