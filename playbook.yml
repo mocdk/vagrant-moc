@@ -2,7 +2,8 @@
 - hosts: all
   sudo: true
   vars:
-    zsh_theme: robbyrussell
+    zsh_theme: dpoggi
+    zsh_plugins: git github composer grunt sudo supervisor
     apache_port: 8080
 
   handlers:
