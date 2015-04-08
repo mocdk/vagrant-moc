@@ -22,4 +22,19 @@
   notify:
     - restart elasticsearch
 
+- name: Installing Marvel Plugin
+  command: bin/plugin -i elasticsearch/marvel/latest
+    chdir=/usr/share/elasticsearch/
+    creates=/usr/share/elasticsearch/plugins/marvel/
+  notify:
+    - restart elasticsearch
+
+- name: Installing Elasticsearch-HQ Plugin
+  command: bin/plugin -i royrusso/elasticsearch-HQ
+    chdir=/usr/share/elasticsearch/
+    creates=/usr/share/elasticsearch/plugins/HQ
+  notify:
+    - restart elasticsearch
+
+
 ## Start elastic search
