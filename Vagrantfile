@@ -5,7 +5,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.hostname = "moc-dev"
+  config.vm.hostname = "vagrant-moc"
 
   # Should be changed when the box is final
   config.vm.box = "testbox"

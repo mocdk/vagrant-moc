@@ -1,4 +1,4 @@
 ---
 
 - name: Install grunt-cli
-  shell: npm install -g grunt-cli | bash creates=/usr/bin/grunt
+  command: npm install -g grunt-cli creates=/usr/bin/grunt

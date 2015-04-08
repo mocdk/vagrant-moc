@@ -34,12 +34,19 @@
     - include: tasks/nodejs.yml
     - include: tasks/nfsserver.yml
     - include: tasks/grunt.yml
+    - include: tasks/bower.yml
 
+    - name: Make vagrant part of www-data group
+      user: name=vagrant groups=www-data,users,sudo
 
+    - include: tasks/java.yml
+    - include: tasks/elasticsearch.yml
 # Mangler
+# Opret MySQL bruger med name trypo3 og password jph316, som har adgang til typo3_
 # * Opgradering til Apache 2.4 !!!
 # * [DONE] Varnish
 # * Stillingtagen til php-fpm brugere (default www-data, skal det hellere være vagrant?)
+# * Installere bower (npm install -g bower)
 # * [DONE] NFS mounts
 # * php-fpm instillinger
 # * Tomcat + Solr
