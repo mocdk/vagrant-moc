@@ -19,6 +19,7 @@
       service: name=elasticsearch state=restarted
 
   tasks:
+    - include: tasks/motd.yml
     - include: tasks/apt.yml
     - include: tasks/dotdeb.yml
     - include: tasks/backports.yml
