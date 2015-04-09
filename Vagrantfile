@@ -18,6 +18,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.playbook = "playbook.yml"
   end
 
+  config.vm.provider "vmware_fusion" do |v|
+    v.memory = 1024
+    v.cpus = 2
+    v.gui = false
+  end
 
   # Check if ~/.gitconfig exists locally
   # If so, copy basic Git Config settings to Vagrant VM
