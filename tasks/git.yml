@@ -1,0 +1,8 @@
+---
+
+- name: Install git from backports
+  apt: name='{{ item }}' state=latest default_release=wheezy-backports
+  with_items:
+    - git
+    - git-man
+
