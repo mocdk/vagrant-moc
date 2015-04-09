@@ -45,11 +45,11 @@
   notify:
     - reload apache
 
-- name: copy default timezone (fpm)
+- name: Set PHP timezone to Europe/Copenhagen (fpm)
   copy: dest=/etc/php5/fpm/conf.d/timezone.ini content="date.timezone = Europe/Copenhagen"
   notify: restart php
 
-- name: copy default timezone (cli)
+- name: Set PHP timezone to Europe/Copenhagen (cli)
   copy: dest=/etc/php5/cli/conf.d/timezone.ini content="date.timezone = Europe/Copenhagen"
 
 - name: Set memory limit (fpm)
@@ -62,8 +62,13 @@
 - name: Copy default index.php file
   template: src=index.php.j2 dest=/var/www/index.php
 
-- name: start php
+- name: Add new Vagrant php-fpm pool
+  template: src=php-pool.j2 dest=/etc/php5/fpm/pool.d/vagrant.conf
+  notify: restart php
+
+- name: Remove default php-fpm pool
+  file: path=/etc/php5/fpm/pool.d/www.conf state=absent
+  notify: restart php
+
+- name: Start php-fpm process
   service: name=php5-fpm state=started enabled=yes
-
-
-
