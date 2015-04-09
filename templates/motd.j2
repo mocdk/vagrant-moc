@@ -12,10 +12,12 @@ Flow / Neos:
 Use the command 'rosemary create' to create a new installation
 Use the command 'rosemary sync' to synchronize data from moc-files
 
-IP address	{{ ansible_eth0.ipv4.address }}
+IP address	{{ ansible_eth1.ipv4.address }}
 
-Marvel: 		http://{{ ansible_eth0.ipv4.address }}:9200/_plugin/marvel/
-Elastricsearch	HQ: http://{{ ansible_eth0.ipv4.address }}:9200/_plugin/HQ/
+Elastic search
+    Marvel:   http://{{ ansible_eth1.ipv4.address }}:9200/_plugin/marvel/
+    HQ:       http://{{ ansible_eth1.ipv4.address }}:9200/_plugin/HQ/
+
 MySql:
     Server: localhost
     Username: root

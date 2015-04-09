@@ -52,6 +52,10 @@
 - name: copy default timezone (cli)
   copy: dest=/etc/php5/cli/conf.d/timezone.ini content="date.timezone = Europe/Copenhagen"
 
+- name: Set memory limit (fpm)
+  copy: dest=/etc/php5/cli/conf.d/memory.ini content="memory_limit = 1G"
+  notify: restart php
+
 - name: Remove default index.html file
   file: path=/var/www/index.html state=absent
 
