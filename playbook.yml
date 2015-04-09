@@ -19,42 +19,52 @@
       service: name=elasticsearch state=restarted
 
   tasks:
-    - include: tasks/motd.yml
+    #Role common
     - include: tasks/apt.yml
     - include: tasks/dotdeb.yml
     - include: tasks/backports.yml
+    - include: tasks/common.yml
+    - include: tasks/motd.yml
+    - name: install git
+      apt: name=git-core
+    - include: tasks/zsh.yml
+    - include: tasks/nfsserver.yml
+
+    #Role Web application server (includes Varnisgh, MySQL etc)
     - include: tasks/phpapachefpm.yml
     - name: install mysql
       apt: name=mysql-server state=present
     - include: tasks/redis.yml
     - include: tasks/memcache.yml
-    - name: install git
-      apt: name=git-core
-    - include: tasks/zsh.yml
     - include: tasks/varnish.yml
-    - include: tasks/compass.yml
-    - include: tasks/nodejs.yml
-    - include: tasks/nfsserver.yml
-    - include: tasks/grunt.yml
-    - include: tasks/bower.yml
-
     - name: Make vagrant part of www-data group
       user: name=vagrant group=www-data groups=users,sudo
 
+
+    #Role dev tools
+    - include: tasks/compass.yml
+    - include: tasks/nodejs.yml
+    - include: tasks/grunt.yml
+    - include: tasks/bower.yml
+    - include: tasks/composer.yml
+
+    #Role elastic search (Does java go into common?
     - include: tasks/java.yml
     - include: tasks/elasticsearch.yml
+
 # Mangler
-# Opret MySQL bruger med name trypo3 og password jph316, som har adgang til typo3_
+#
+# * Rosemary git
 # * [Udsat] Opgradering til Apache 2.4 !!!
 # * [DONE] Varnish
 # * Stillingtagen til php-fpm brugere (default www-data, skal det hellere være vagrant?)
 # * Installere bower (npm install -g bower)
 # * [DONE] NFS mounts
-# * php-fpm instillinger
+# * [DONE] php-fpm instillinger
 # * Tomcat + Solr
-# * Elasticsearch
+# * [DONE] Elasticsearch
 # * Beanstalkd
-# * Supervisor?
+# * Supervisor
 # * [DONE] zsh med oh-my-zsh
 # * Std. pakker (vim, emacs htop etc)
 # * [DONE] npm

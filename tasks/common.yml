@@ -1,0 +1,28 @@
+---
+
+- name: Install common packages for MOC Development
+  apt: name='{{ item }}' state=present
+  with_items:
+  - htop
+  - ngrep
+  - strace
+  - tcpdump
+  - emacs
+  - yaml-mode
+  - php-elisp
+  - locate
+  - vim
+  - vim-runtime
+  - vim-scripts
+  - pv
+  - bzip2
+  - curl
+  - links
+  - netcat
+  - unzip
+  - zip
+  - screen
+  - nmap
+  - lsof
+  - ntpdate
+  - ntp
