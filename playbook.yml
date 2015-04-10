@@ -14,7 +14,7 @@
     - name: restart varnish
       service: name=varnish state=restarted
     - name: restart nfs
-      service: name=nfs-common state=restarted
+      service: name=nfs-kernel-server state=restarted
     - name: restart elasticsearch
       service: name=elasticsearch state=restarted
 
