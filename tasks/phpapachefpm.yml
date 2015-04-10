@@ -7,8 +7,13 @@
     - apache2-mpm-worker
     - libapache2-mod-fastcgi
 
-- name: Enable mod actions in apache
-  shell: a2enmod actions creates=/etc/apache2/mods-enabled/actions.load
+- name: Enable Apache modules
+  shell: a2enmod '{{ item }}' creates=/etc/apache2/mods-enabled/'{{ item }}'.load
+  with_items:
+    - actions
+    - headers
+    - rewrite
+    - expires
 
 - name: install PHP and module
   apt: name='{{ item }}' state=present
