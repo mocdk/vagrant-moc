@@ -7,9 +7,8 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = "vagrant-moc"
 
-  # Should be changed when the box is final
+  #config.vm.box = "mocdk/vagrant-moc"
   config.vm.box = "testbox"
-  config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network :private_network, ip: "192.168.66.120"
   config.vm.network "public_network"
   config.ssh.forward_agent = true
@@ -40,6 +39,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision :shell, :path => "config/local-bootstrap.sh"
   end
 
+  config.trigger.after :up do
+    run "./mountNfs.sh"
+  end
+
+  config.trigger.before :halt do
+    run "./unmountNfs.sh"
+  end
 end
 
 
