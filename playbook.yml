@@ -5,6 +5,12 @@
     zsh_theme: dpoggi
     zsh_plugins: git github composer grunt sudo supervisor
     apache_port: 8081
+    ssh_known_hosts_command: "ssh-keyscan -H -T 10"
+    ssh_known_hosts_file: "/home/vagrant/.ssh/known_hosts"
+    ssh_known_hosts:
+    - moc-files
+    - github.com
+    - git.moc.net
 
   handlers:
     - name: reload apache
@@ -46,6 +52,7 @@
     - include: tasks/grunt.yml
     - include: tasks/bower.yml
     - include: tasks/composer.yml
+    - include: tasks/known_hosts.yml
 
     #Role elastic search (Does java go into common?
     - include: tasks/java.yml

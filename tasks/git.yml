@@ -6,3 +6,9 @@
     - git
     - git-man
 
+- name: Set default .gitconfig
+  template: src=gitconfig.j2 dest=/home/vagrant/.gitconfig
+
+- name: Add .idea to global ignorelist
+  copy: dest=/home/vagrant/.gitignore content=".idea" force=no
+

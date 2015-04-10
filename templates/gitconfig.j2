@@ -1,0 +1,19 @@
+[core]
+	excludesfile = ~/.gitignore
+	ignorecase = false
+	autocrlf = false
+	pager = cat
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
+	lg = log --graph --pretty=oneline --abbrev-commit --date=relative
+[color]
+	ui = auto
+[push]
+	default = tracking
+[remote "origin"]
+	push = HEAD:refs/for/master
+[branch]
+	autosetuprebase = always
