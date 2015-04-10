@@ -4,7 +4,7 @@
   vars:
     zsh_theme: dpoggi
     zsh_plugins: git github composer grunt sudo supervisor
-    apache_port: 8080
+    apache_port: 8081
 
   handlers:
     - name: reload apache

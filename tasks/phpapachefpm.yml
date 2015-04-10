@@ -31,14 +31,14 @@
   notify:
     - reload apache
 
-- name: Move Apache to port 8080
+- name: Move Apache to port  {{ apache_port }}
   template:
     src=ports.j2
     dest=/etc/apache2/ports.conf owner=root
   notify:
     - reload apache
 
-- name: Update default vhost to port 8080
+- name: Update default vhost to port {{ apache_port }}
   template:
     src=default-vhost.j2
     dest=/etc/apache2/sites-available/default
