@@ -2,7 +2,7 @@
 
 
 - name: Make sure the known hosts file exists
-  file: "path={{ ssh_known_hosts_file }} state=touch" owner=vagrant group="www-data"
+  file: "path={{ ssh_known_hosts_file }} state=touch owner=vagrant group=www-data"
 
 - name: Check host name availability
   shell: "ssh-keygen -f {{ ssh_known_hosts_file }} -F {{ item }}"
