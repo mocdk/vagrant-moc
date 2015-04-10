@@ -1,0 +1,22 @@
+---
+
+
+- name: Clone Rosemary repo
+#  command: git clone git@github.com:mocdk/Rosemary.git chdir=/home/vagrant
+  git:
+    repo=https://github.com/mocdk/Rosemary.git
+    dest=/home/vagrant/Rosemary
+    update=no
+    accept_hostkey=true
+
+- name: Run composer install
+  command: composer install chdir=/home/vagrant/Rosemary
+
+- name: Make symlink rosemary command in /usr/local/bin
+  file:
+    path=/usr/local/bin/rosemary
+    mode=0775
+    src=/home/vagrant/Rosemary/application.php
+    state=link
+
+# Link rosemary command to Application.php

@@ -51,6 +51,8 @@
     - include: tasks/java.yml
     - include: tasks/elasticsearch.yml
 
+    - include: tasks/rosemary.yml
+
 # Mangler
 #
 # * Rosemary git
