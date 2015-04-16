@@ -1,0 +1,9 @@
+---
+
+
+- name: Install gerrit command
+  template: src=gerrit.j2
+            dest=/usr/local/bin/gerrit
+            owner=root
+            group=root
+            mode=0775

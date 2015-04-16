@@ -53,6 +53,7 @@
     - include: tasks/bower.yml
     - include: tasks/composer.yml
     - include: tasks/known_hosts.yml
+    - include: tasks/gerritcommand.yml
 
     #Role elastic search (Does java go into common?
     - include: tasks/java.yml
