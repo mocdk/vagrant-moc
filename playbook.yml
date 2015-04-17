@@ -15,6 +15,8 @@
   handlers:
     - name: reload apache
       service: name=apache2 state=reloaded
+    - name: restart apache
+      service: name=apache2 state=restarted
     - name: restart php
       service: name=php5-fpm state=restarted
     - name: restart varnish
@@ -23,6 +25,8 @@
       service: name=nfs-kernel-server state=restarted
     - name: restart elasticsearch
       service: name=elasticsearch state=restarted
+    - name: restart pound
+      service: name=pound state=restarted
 
   tasks:
     #Role common
@@ -44,6 +48,7 @@
     - include: tasks/varnish.yml
     - name: Make vagrant part of www-data group
       user: name=vagrant group=www-data groups=users,sudo
+    - include: tasks/pound.yml
 
 
     #Role dev tools

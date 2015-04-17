@@ -1,0 +1,49 @@
+## Pound configuration for MOC Development machines. Used as SSL proxy in front of Varnish
+######################################################################
+## global options:
+
+User		"vagrant"
+Group		"www-data"
+#RootJail	"/chroot/pound"
+
+## Logging: (goes to syslog by default)
+##	0	no logging
+##	1	normal
+##	2	extended
+##	3	Apache-style (common log format)
+LogLevel	1
+
+## check backend every X secs:
+Alive		30
+
+## use hardware-accelleration card supported by openssl(1):
+#SSLEngine	"<hw>"
+
+# poundctl control socket
+Control "/var/run/pound/poundctl.socket"
+
+######################################################################
+## listen, redirect and ... to:
+
+## redirect all requests on port 4443 to local Varnish running on port 80
+ListenHTTPs
+	Address 0.0.0.0
+	Port	443
+
+	Cert "/etc/pound/star.dev.pem"
+
+	## allow PUT and DELETE also (by default only GET, POST and HEAD)?:
+	xHTTP		0
+
+	# Set headers, so Neos and TYPO3 can access
+	AddHeader "XHTTPS: on"
+	AddHeader "X-Forwarded-Proto: https"
+	AddHeader "X-Forwarded-Port: 443"
+
+	Service
+		BackEnd
+			Address	127.0.0.1
+			Port	80
+		End
+	End
+End

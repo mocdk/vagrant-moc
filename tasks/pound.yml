@@ -1,0 +1,30 @@
+---
+
+
+- name: Install pound
+  apt: name=pound
+
+# Enable pound in
+
+- name: Enable pound
+  copy: dest=/etc/default/pound content="startup=1"
+
+- name: Copy SSL *.dev certificate and key to /etc/pound/
+  template:
+    src=star.dev.pem.j2
+    dest=/etc/pound/star.dev.pem
+  notify:
+    - restart pound
+
+- name: Copy default pound configuration
+  template:
+    src=pound.cfg.j2
+    dest=/etc/pound/pound.cfg
+  notify:
+    - restart pound
+
+
+- name: Start pound
+  service: name=pound state=started enabled=yes
+
+

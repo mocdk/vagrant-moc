@@ -36,12 +36,12 @@
   notify:
     - reload apache
 
-- name: Move Apache to port  {{ apache_port }}
+- name: Move Apache to port  {{ apache_port }} and disable SSL
   template:
     src=ports.j2
     dest=/etc/apache2/ports.conf owner=root
   notify:
-    - reload apache
+    - restart apache
 
 - name: Update default vhost to port {{ apache_port }}
   template:
