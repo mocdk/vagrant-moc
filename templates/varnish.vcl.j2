@@ -78,9 +78,19 @@ sub vcl_recv {
 	if (req.url ~ "/typo3/index.php$") {
 		return (pipe);
 	}
-	if (req.url ~ "/neos/") {
-		return (pipe);
-	}
+
+        # don't cache backends
+        if (req.url ~ "/typo3/") {
+                return (pass);
+        }
+        if (req.url ~ "/neos/") {
+                return (pass);
+        }
+
+	# don't cache when frontend user session is active
+        if (req.http.Cookie ~ ".*TYPO3_FE_USER_LOGGED_IN=1.*") {
+                return (pass);
+        }
 
 	# Always cache all static files
 	if (req.url ~ "\.(png|gif|jpg|bmp|webm|svg|swf|js|css|woff|woff2|eot|ttc|ttf|otf|f4a|f4b|m4a|oga|ogg|opus|webp|f4v|f4p|m4v|mp4|ogv|flv|cur|ico|vcard|vcf|htc)$") {
