@@ -39,6 +39,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision :shell, :path => "config/local-bootstrap.sh"
   end
 
+  config.trigger.before :up do
+    run "sudo echo"
+  end
+
   config.trigger.after :up do
     run "./mountNfs.sh"
   end
