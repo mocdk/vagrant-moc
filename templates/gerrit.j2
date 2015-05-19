@@ -28,7 +28,6 @@ else
 	git config remote.origin.pushurl ssh://gerrit.moc.net:29418/$RepositoryName
 fi
 
-git config remote.origin.pushurl ssh://gerrit.moc.net:29418/$RepositoryName
 git config remote.origin.push HEAD:refs/for/master
 curl -k https://moc.net/commit-msg > .git/hooks/commit-msg 2> /dev/null
 chmod a+x .git/hooks/commit-msg
