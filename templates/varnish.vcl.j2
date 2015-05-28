@@ -26,6 +26,11 @@ sub vcl_recv {
 			ban("obj.http.TYPO3-Pid == " + req.http.Varnish-Ban-TYPO3-Pid + " && req.http.host == " + req.http.host);
 			error 200 "Banned TYPO3 pid " + req.http.Varnish-Ban-TYPO3-Pid;
 		}
+
+		if (req.http.X-Varnish-Ban-Neos-NodeIdentifier) {
+			ban("obj.http.X-Neos-NodeIdentifier == " + req.http.X-Varnish-Ban-Neos-NodeIdentifier);
+			error 200 "Banned Neos node identifier " + req.http.X-Varnish-Ban-Neos-NodeIdentifier;
+		}
 	}
 
 	if (req.request == "PURGE") {
