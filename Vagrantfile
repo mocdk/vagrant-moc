@@ -7,8 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = "vagrant-moc"
 
-  #config.vm.box = "mocdk/vagrant-moc"
-  config.vm.box = "testbox"
+  config.vm.box = "mocdk/vagrant-moc"
   config.vm.network :private_network, ip: "192.168.66.120"
   config.vm.network "public_network"
   config.ssh.forward_agent = true

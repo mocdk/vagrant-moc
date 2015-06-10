@@ -8,7 +8,6 @@
     ssh_known_hosts_command: "ssh-keyscan -H -T 10"
     ssh_known_hosts_file: "/home/vagrant/.ssh/known_hosts"
     ssh_known_hosts:
-    - moc-files
     - github.com
     - git.moc.net
 
