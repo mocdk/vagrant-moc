@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Warning, this file is distributed with puppet, DO NOT EDIT MANUALLY -->
+<solr>
+  <!-- MOC: Notice that we no use the Core Autodiscovery, so cores are not specified here! Instead the directory is traversed looking for core.properties files.
+See https://wiki.apache.org/solr/Core%20Discovery%20(4.4%20and%20beyond) for more info 
+-->
+</solr>

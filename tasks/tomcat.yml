@@ -1,0 +1,5 @@
+---
+
+
+- name: Install Tomcat
+  apt: name=tomcat7 state=present

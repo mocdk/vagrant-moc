@@ -26,6 +26,8 @@
       service: name=elasticsearch state=restarted
     - name: restart pound
       service: name=pound state=restarted
+    - name: restart tomcat
+      service: name=tomcat7 state=restarted
 
   tasks:
     #Role common
@@ -64,6 +66,11 @@
     - include: tasks/elasticsearch.yml
 
     - include: tasks/rosemary.yml
+
+
+    #Role Solr
+    - include: tasks/tomcat.yml
+    - include: tasks/solr.yml
 
 # Mangler
 #
