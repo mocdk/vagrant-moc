@@ -72,6 +72,8 @@
     - include: tasks/tomcat.yml
     - include: tasks/solr.yml
 
+    - include: tasks/beanstalkd.yml
+
 # Mangler
 #
 # * Rosemary git
