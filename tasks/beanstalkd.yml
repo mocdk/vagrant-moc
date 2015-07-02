@@ -1,0 +1,11 @@
+---
+
+- name: Install beanstalkd
+  apt: name=beanstalkd
+
+- name: Configure beanstalkd
+  template: src=beanstalkd.j2
+            dest=/etc/default/beanstalkd
+            owner=root
+            group=root
+            mode=0644
