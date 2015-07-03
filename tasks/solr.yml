@@ -4,7 +4,7 @@
 #  file: path=/home/solr state=directory owner=vagrant group=www-data
 
 - name: Copy solr home
-  copy: dest=/home/solr src=solr/solr-home/ force=no
+  copy: dest=/home/solr src=solr/solr-home/ force=no owner=vagrant group=www-data
   notify: restart tomcat
 
 - name: Copy solr.war
