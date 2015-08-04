@@ -50,7 +50,7 @@
     - name: Make vagrant part of www-data group
       user: name=vagrant group=www-data groups=users,sudo
     - include: tasks/pound.yml
-
+    - include: tasks/graphicsmagick.yml
 
     #Role dev tools
     - include: tasks/compass.yml
