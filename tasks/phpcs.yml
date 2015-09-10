@@ -1,0 +1,41 @@
+---
+
+
+- name: Install php-pear
+  apt: name='{{ item }}' state=present
+  with_items:
+    - php-pear
+
+- name: Run pear update-channels
+  command: /usr/bin/pear update-channels
+
+- name: Run pear install phpcs
+  command: /usr/bin/pear install --alldeps PHP_CodeSniffer
+  args:
+    creates: /usr/share/php/PHP/CodeSniffer
+
+- name: PHPCS_Standards_TYPO3SniffPool
+  command: git clone https://github.com/typo3-ci/TYPO3SniffPool.git
+  args:
+    chdir: /usr/share/php/PHP/CodeSniffer/Standards
+    creates: /usr/share/php/PHP/CodeSniffer/Standards/TYPO3SniffPool
+
+- name: PHPCS_Standards_TYPO3Flow
+  command: git clone https://github.com/typo3-ci/TYPO3Flow.git
+  args:
+    chdir: /usr/share/php/PHP/CodeSniffer/Standards
+    creates: /usr/share/php/PHP/CodeSniffer/Standards/TYPO3Flow
+
+- name: git clone https://github.com/typo3-ci/TYPO3CMS.git
+  command: /usr/bin/pear update-channels
+  args:
+    chdir: /usr/share/php/PHP/CodeSniffer/Standards
+    creates: /usr/share/php/PHP/CodeSniffer/Standards/TYPO3CMS
+
+- name: PHPCS_Standards-Permissions
+  command: chmod 777 Standards
+  args:
+    chdir: /usr/share/php/PHP/CodeSniffer
+
+
+
