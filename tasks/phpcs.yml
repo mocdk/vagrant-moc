@@ -26,8 +26,8 @@
     chdir: /usr/share/php/PHP/CodeSniffer/Standards
     creates: /usr/share/php/PHP/CodeSniffer/Standards/TYPO3Flow
 
-- name: git clone https://github.com/typo3-ci/TYPO3CMS.git
-  command: /usr/bin/pear update-channels
+- name: PHPCS_Standards_TYPO3CMS
+  command: git clone https://github.com/typo3-ci/TYPO3CMS.git
   args:
     chdir: /usr/share/php/PHP/CodeSniffer/Standards
     creates: /usr/share/php/PHP/CodeSniffer/Standards/TYPO3CMS
