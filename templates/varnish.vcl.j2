@@ -157,6 +157,11 @@ sub vcl_fetch {
 		return (deliver);
 	}
 
+	# Return static HTML files with cache headers
+	if (req.url ~ "\.html(\?.*)?$" && beresp.http.ETag) {
+		return (deliver);
+	}
+
 	# Allow edgeside includes
 	set beresp.do_esi = true;
 
