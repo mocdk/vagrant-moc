@@ -113,7 +113,7 @@ sub vcl_recv {
         }
 
 	# Always cache all static files
-	if (req.url ~ "\.(png|gif|jpg|bmp|webm|svg|swf|js|css|woff|woff2|eot|ttc|ttf|otf|f4a|f4b|m4a|oga|ogg|opus|webp|f4v|f4p|m4v|mp4|ogv|flv|cur|ico|vcard|vcf|htc)(\?.*)?$") {
+	if (req.url ~ "\.(png|gif|jpg|jpeg|bmp|webm|svg|svgz|tif|tiff|eps|ejs|swf|js|css|woff|woff2|eot|ttc|ttf|otf|doc|docx|xlsx|xls|pptx|ps|class|jar|pdf|pls|ppt||f4a|f4b|m4a|midi|mid|oga|ogg|opus|webp|f4v|f4p|m4v|mp4|ogv|flv|cur|ico|vcard|vcf|htc|csv)(\?.*)?$") {
 		return(lookup);
 	}
 
@@ -151,9 +151,9 @@ sub vcl_fetch {
 		return (deliver);
 	}
 
-	if (req.url ~ "\.(png|gif|jpg|bmp|webm|svg|swf|js|css|woff|woff2|eot|ttc|ttf|otf|f4a|f4b|m4a|oga|ogg|opus|webp|f4v|f4p|m4v|mp4|ogv|flv|cur|ico|vcard|vcf|htc)(\?.*)?$") {
+	if (req.url ~ "\.(png|gif|jpg|jpeg|bmp|webm|svg|svgz|tif|tiff|eps|ejs|swf|js|css|woff|woff2|eot|ttc|ttf|otf|doc|docx|xlsx|xls|pptx|ps|class|jar|pdf|pls|ppt||f4a|f4b|m4a|midi|mid|oga|ogg|opus|webp|f4v|f4p|m4v|mp4|ogv|flv|cur|ico|vcard|vcf|htc|csv)(\?.*)?$") {
 		unset beresp.http.set-cookie;
-		set beresp.http.X-Cacheable = "YES: png|gif|jpg|bmp|webm|svg|swf|js|css|woff|woff2|eot|ttc|ttf|otf|f4a|f4b|m4a|oga|ogg|opus|webp|f4v|f4p|m4v|mp4|ogv|flv|cur|ico|vcard|vcf|htc are always cached";
+		set beresp.http.X-Cacheable = "YES: png|gif|jpg|jpeg|bmp|webm|svg|svgz|tif|tiff|eps|ejs|swf|js|css|woff|woff2|eot|ttc|ttf|otf|doc|docx|xlsx|xls|pptx|ps|class|jar|pdf|pls|ppt||f4a|f4b|m4a|midi|mid|oga|ogg|opus|webp|f4v|f4p|m4v|mp4|ogv|flv|cur|ico|vcard|vcf|htc|csv are always cached";
 		return (deliver);
 	}
 
