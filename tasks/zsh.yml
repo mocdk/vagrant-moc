@@ -9,6 +9,12 @@
     dest=/home/vagrant/.oh-my-zsh
     update=no
 
+- name: Clone TYPO3 Flow Helper for Oh-my-ZSH
+  git:
+    repo=hhttps://github.com/sandstorm/oh-my-zsh-flow3-plugin.git
+    dest=/home/vagrant/.oh-my-zsh/custom/plugins
+    update=no
+
 - name: deploy .zshrc
   template: src=zshrc.j2 dest=/home/vagrant/.zshrc owner=vagrant
 
