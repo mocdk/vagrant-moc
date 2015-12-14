@@ -1,3 +1,9 @@
+Branch for earlier versions than El Capitan
+==============
+
+Because of an error with NFS mount crashing i reverted the support for El Capitan.
+
+
 MOC Vagrant development machine
 ===============================
 
