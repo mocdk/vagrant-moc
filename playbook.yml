@@ -54,11 +54,9 @@
 
     #Role dev tools
     - include: tasks/compass.yml
-# Disabled due to an issue in npm. See: https://github.com/npm/npm/issues/10394
-#    - include: tasks/nodejs.yml
-#    - include: tasks/grunt.yml
-#    - include: tasks/bower.yml
-
+    - include: tasks/nodejs.yml
+    - include: tasks/grunt.yml
+    - include: tasks/bower.yml
     - include: tasks/composer.yml
     - include: tasks/known_hosts.yml
     - include: tasks/gerritcommand.yml
