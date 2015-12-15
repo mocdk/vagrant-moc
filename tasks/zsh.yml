@@ -11,8 +11,8 @@
 
 - name: Clone TYPO3 Flow Helper for Oh-my-ZSH
   git:
-    repo=hhttps://github.com/sandstorm/oh-my-zsh-flow3-plugin.git
-    dest=/home/vagrant/.oh-my-zsh/custom/plugins
+    repo=https://github.com/sandstorm/oh-my-zsh-flow3-plugin.git
+    dest=/home/vagrant/.oh-my-zsh/custom/flow
     update=no
 
 - name: deploy .zshrc
