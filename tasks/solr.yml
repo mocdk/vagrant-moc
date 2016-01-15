@@ -23,4 +23,9 @@
   copy: dest=/etc/default/tomcat7 src=solr/tomcat7_default
   notify: restart tomcat
 
+- name: Create a directory for Tika if it doesn't exist
+  file: path=/home/solr/bin state=directory mode=0755  owner=vagrant group=www-data
+
+- name: Download Tika
+  get_url: url=http://archive.apache.org/dist/tika/tika-app-1.4.jar dest=/home/solr/bin/tika-app-1.4.jar mode=0755 owner=vagrant group=www-data
 
