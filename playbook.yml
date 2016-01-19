@@ -35,6 +35,7 @@
     - include: tasks/dotdeb.yml
     - include: tasks/backports.yml
     - include: tasks/common.yml
+    - include: tasks/system.yml
     - include: tasks/motd.yml
     - include: tasks/git.yml
     - include: tasks/zsh.yml

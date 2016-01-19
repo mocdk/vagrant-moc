@@ -1,0 +1,9 @@
+---
+
+
+- name: Adjust allowed open files
+  template: src=limits.j2
+            dest=/etc/security/limits.d/vagrant.conf
+            owner=root
+            group=root
+            mode=0644
