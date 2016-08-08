@@ -1,7 +1,7 @@
 ---
 
 - name: Apt | Setup backports
-  apt_repository: repo='deb http://http.debian.net/debian wheezy-backports main'
+  apt_repository: repo='deb http://http.debian.net/debian jessie-backports main'
 
 - name: dotdeb | Update apt cache
   apt: update_cache=yes

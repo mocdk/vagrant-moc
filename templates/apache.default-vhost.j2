@@ -1,18 +1,20 @@
 <VirtualHost *:{{ apache_port }}>
 	ServerAdmin webmaster@localhost
 
-	DocumentRoot /var/www
+	DocumentRoot /var/www/html
 	<Directory />
 		Options FollowSymLinks
 		AllowOverride None
 	</Directory>
-	<Directory /var/www/>
+	<Directory /var/www/html/>
 		Options Indexes FollowSymLinks MultiViews
 		AllowOverride None
 		Order allow,deny
 		allow from all
 	</Directory>
 
+	ProxyPassMatch ^/(.*\.php(/.*)?)$ unix:/var/run/php5-fpm-vagrant.sock|fcgi://127.0.0.1:9000/var/www/html
+	
 	ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
 	<Directory "/usr/lib/cgi-bin">
 		AllowOverride None
@@ -29,3 +31,4 @@
 
 	CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
+

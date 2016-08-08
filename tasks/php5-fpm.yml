@@ -1,0 +1,33 @@
+---
+
+- name: Install PHP 5.6 and module
+  apt: name='{{ item }}' state=present
+  with_items:
+    - php5-cli
+    - php5-fpm
+    - php5-gd
+    - php5-ldap
+    - php5-mysqlnd
+    - php5-curl
+    - php5-sqlite
+    - php5-pgsql
+    - php5-imagick
+    - php5-mcrypt
+
+- name: Set PHP timezone to Europe/Copenhagen (fpm)
+  copy: dest=/etc/php5/fpm/conf.d/timezone.ini content="date.timezone = Europe/Copenhagen"
+  notify: restart php
+
+- name: Set PHP timezone to Europe/Copenhagen (cli)
+  copy: dest=/etc/php5/cli/conf.d/timezone.ini content="date.timezone = Europe/Copenhagen"
+
+- name: Set memory limit (fpm)
+  copy: dest=/etc/php5/fpm/conf.d/memory.ini content="memory_limit = 1G"
+  notify: restart php
+
+- name: Add new Vagrant php5-fpm pool
+  template: src=php5-fpm-pool.j2 dest=/etc/php5/fpm/pool.d/php5-fpm-vagrant.conf
+  notify: restart php
+
+- name: Start php5-fpm process
+  service: name=php5-fpm state=started enabled=yes

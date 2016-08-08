@@ -1,0 +1,39 @@
+---
+
+- name: Install Apache 2.4
+  apt: name='{{ item }}' state=present
+  with_items:
+    - apache2
+    - apache2-mpm-worker
+    - libapache2-mod-fastcgi
+
+- name: Enable Apache 2.4 modules
+  shell: a2enmod '{{ item }}' creates=/etc/apache2/mods-enabled/'{{ item }}'.load
+  with_items:
+    - actions
+    - headers
+    - rewrite
+    - expires
+    - proxy
+    - proxy_fcgi
+
+- name: Move Apache 2.4 to port  {{ apache_port }} and disable SSL
+  template:
+    src=apache.ports.j2
+    dest=/etc/apache2/ports.conf owner=root
+  notify:
+    - restart apache
+
+- name: Update default vhost to port {{ apache_port }}
+  template:
+    src=apache.default-vhost.j2
+    dest=/etc/apache2/sites-available/000-default.conf
+  notify:
+    - reload apache
+
+- name: Remove default index.html file
+  file: path=/var/www/html/index.html state=absent
+
+- name: Copy default index.php file
+  template: src=apache.index.php.j2 dest=/var/www/html/index.php
+

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VAGRANT_IP="192.168.66.120";
+VAGRANT_IP="192.168.66.129";
 MAJOR_MAC_VERSION=$(sw_vers -productVersion | awk -F '.' '{print $1 "." $2}')
 
 if [ ! -d "workdir" ]; then

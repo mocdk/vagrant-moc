@@ -1,0 +1,34 @@
+---
+
+- name: Install PHP 7.0 and module
+  apt: name='{{ item }}' state=present
+  with_items:
+    - php7.0-cli
+    - php7.0-fpm
+    - php7.0-gd
+    - php7.0-ldap
+    - php7.0-mysqlnd
+    - php7.0-curl
+    #- php7.0-sqlite
+    - php7.0-pgsql
+    - php7.0-imagick
+    - php7.0-mcrypt
+    - php7.0-mbstring
+
+- name: Set PHP timezone to Europe/Copenhagen (fpm)
+  copy: dest=/etc/php/7.0/fpm/conf.d/timezone.ini content="date.timezone = Europe/Copenhagen"
+  notify: restart php
+
+- name: Set PHP timezone to Europe/Copenhagen (cli)
+  copy: dest=/etc/php/7.0/cli/conf.d/timezone.ini content="date.timezone = Europe/Copenhagen"
+
+- name: Set memory limit (fpm)
+  copy: dest=/etc/php/7.0/fpm/conf.d/memory.ini content="memory_limit = 1G"
+  notify: restart php
+
+- name: Add new Vagrant php7.0-fpm pool
+  template: src=php70-fpm-pool.j2 dest=/etc/php/7.0/fpm/pool.d/php70-fpm-vagrant.conf
+  notify: restart php
+
+- name: Start php7.0-fpm process
+  service: name=php7.0-fpm state=started enabled=yes

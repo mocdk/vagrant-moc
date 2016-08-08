@@ -4,6 +4,14 @@
 - name: Install Varnish
   apt: name=varnish state=present
 
+- name: Install Varnish service
+  template:
+    src=varnish.service.j2
+    dest=/lib/systemd/system/varnish.service
+    owner=root
+  notify:
+    - restart varnish
+
 - name: Install default Varnish
   template:
     src=varnish.vcl.j2

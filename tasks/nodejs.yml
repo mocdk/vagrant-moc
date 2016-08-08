@@ -2,7 +2,7 @@
 
 
 - name: Nodejs | Install nodejs
-  apt: name='{{ item }}' default_release=wheezy-backports
+  apt: name='{{ item }}' default_release=jessie-backports
   with_items:
     - nodejs
     - nodejs-legacy

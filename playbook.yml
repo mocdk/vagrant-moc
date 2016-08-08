@@ -42,7 +42,9 @@
     - include: tasks/nfsserver.yml
 
     #Role Web application server (includes Varnisgh, MySQL etc)
-    - include: tasks/phpapachefpm.yml
+    - include: tasks/apache.yml
+    - include: tasks/php5-fpm.yml
+    - include: tasks/php70-fpm.yml
     - name: install mysql
       apt: name=mysql-server state=present
     - include: tasks/redis.yml
@@ -61,7 +63,7 @@
     - include: tasks/composer.yml
     - include: tasks/known_hosts.yml
     - include: tasks/gerritcommand.yml
-    - include: tasks/phpcs.yml
+    #- include: tasks/phpcs.yml
 
     #Role elastic search (Does java go into common?
     - include: tasks/java.yml
