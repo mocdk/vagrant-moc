@@ -9,7 +9,7 @@ fi
 
 if [ "$MAJOR_MAC_VERSION" == "10.10" ]
 then
-	sudo mount -orw -oresvport -t nfs $VAGRANT_IP:/home/sites workdir
+	sudo mount -orw -oresvport,noowners -t nfs $VAGRANT_IP:/home/sites workdir
 else
-	sudo mount -o vers=4,resvport,rw -t nfs $VAGRANT_IP:/home/sites workdir
+	sudo mount -o vers=4,resvport,rw,noowners -t nfs $VAGRANT_IP:/home/sites workdir
 fi
