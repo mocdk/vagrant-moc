@@ -1,0 +1,5 @@
+---
+
+- name: install mysql
+  apt: name=mysql-server state=present default_release=jessie-backports
+

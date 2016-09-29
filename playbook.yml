@@ -43,10 +43,9 @@
 
     #Role Web application server (includes Varnisgh, MySQL etc)
     - include: tasks/apache.yml
+    - include: tasks/mysql.yml
     - include: tasks/php5-fpm.yml
     - include: tasks/php70-fpm.yml
-    - name: install mysql
-      apt: name=mysql-server state=present
     - include: tasks/redis.yml
     - include: tasks/memcache.yml
     - include: tasks/varnish.yml
