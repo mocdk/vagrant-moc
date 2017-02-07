@@ -1,5 +1,25 @@
 ---
 
-- name: install mysql
-  apt: name=mysql-server state=present default_release=jessie-backports
 
+#- name: download fmysql-apt-config
+#  get_url:
+#    url: http://dev.mysql.com/get/mysql-apt-config_0.7.3-1_all.deb
+#    dest: /home/{{ ansible_env.USER }}/mysql-apt-config_0.7.3-1_all.deb
+#    mode: 0440
+#
+#- name: Install my_package
+#  apt: deb="/home/{{ ansible_env.USER }}/mysql-apt-config_0.7.3-1_all.deb"
+#  sudo: true
+
+
+- name: Download and Install mysql-apt-config
+  apt:
+    deb: http://dev.mysql.com/get/mysql-apt-config_0.7.3-1_all.deb
+
+- name: Update repositories cache and install "foo" package
+  apt:
+    name: mysql-community-server
+    update_cache: yes
+
+- name: Import GPG signature verification
+  shell: "mysql mysql -e \"UPDATE mysql.user SET authentication_string = PASSWORD(''), plugin = 'mysql_native_password' WHERE User = 'root' AND Host = 'localhost'; FLUSH PRIVILEGES;\""
