@@ -3,13 +3,11 @@
 - name: CSS | Install ruby
   apt: name='{{ item }}' state=present
   with_items:
-    - ruby
-    - ruby-dev
-    - rubygems
+    - ruby-full
   tags: css
 
-- name: CSS | Install Compass
-  action: command gem install compass creates=/usr/local/bin/compass
-  tags: css
+- name: Import GPG signature verification
+  shell: "gem install sass"
 
-
+- name: Import GPG signature verification
+  shell: "gem install compass"
