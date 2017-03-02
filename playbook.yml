@@ -27,7 +27,7 @@
     - name: restart pound
       service: name=pound state=restarted
     - name: restart tomcat
-      service: name=tomcat7 state=restarted
+      service: name=tomcat8 state=restarted
 
   tasks:
     #Role common
