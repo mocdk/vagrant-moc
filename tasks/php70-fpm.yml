@@ -14,6 +14,7 @@
     - php7.0-imagick
     - php7.0-mcrypt
     - php7.0-mbstring
+    - php7.0-xml
 
 - name: Set PHP timezone to Europe/Copenhagen (fpm)
   copy: dest=/etc/php/7.0/fpm/conf.d/timezone.ini content="date.timezone = Europe/Copenhagen"
