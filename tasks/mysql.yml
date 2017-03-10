@@ -16,10 +16,14 @@
   apt:
     deb: http://dev.mysql.com/get/mysql-apt-config_0.7.3-1_all.deb
 
-- name: Update repositories cache and install "foo" package
+- name: Update repositories cache and install "mysql-community-server" package
   apt:
     name: mysql-community-server
     update_cache: yes
+    force: yes
 
-- name: Import GPG signature verification
+- name: Set empty password for root
   shell: "mysql mysql -e \"UPDATE mysql.user SET authentication_string = PASSWORD(''), plugin = 'mysql_native_password' WHERE User = 'root' AND Host = 'localhost'; FLUSH PRIVILEGES;\""
+
+- name: Copy mysql.cnf
+  copy: dest=/etc/mysql/conf.d/vagrant.mysql.cnf src=mysql.cnf force=no mode=0644

@@ -1,31 +1,14 @@
 ---
 
-#- name: Create /home/solr directory
-#  file: path=/home/solr state=directory owner=vagrant group=www-data
+- name: Copy install-solr-existing-tomcat.sh
+  copy: dest=/tmp/install-solr-existing-tomcat.sh src=install-solr-existing-tomcat.sh force=no mode=0755
 
-- name: Copy solr home
-  copy: dest=/home/solr src=solr/solr-home/ force=no owner=vagrant group=www-data
-  notify: restart tomcat
+- name: Running install-solr-existing-tomcat.sh
+  command: /tmp/install-solr-existing-tomcat.sh english danish
+  args:
+    creates: /opt/solr-tomcat
 
-- name: Copy solr.war
-  copy: dest=/var/lib/tomcat7/webapps/solr.war src=solr/solr.war force=no
-  notify: restart tomcat
 
-- name: Copy solr.xml file
-  copy: dest=/var/lib/tomcat7/conf/Catalina/localhost/solr.xml src=solr/solr.xml
-  notify: restart tomcat
-
-- name: Copy needed logging files
-  copy: dest=/usr/share/tomcat7/lib/ src=solr/libs/
-  notify: restart tomcat
-
-- name: Copy tomcat default files
-  copy: dest=/etc/default/tomcat7 src=solr/tomcat7_default
-  notify: restart tomcat
-
-- name: Create a directory for Tika if it doesn't exist
-  file: path=/home/solr/bin state=directory mode=0755  owner=vagrant group=www-data
-
-- name: Download Tika
-  get_url: url=http://archive.apache.org/dist/tika/tika-app-1.4.jar dest=/home/solr/bin/tika-app-1.4.jar mode=0755 owner=vagrant group=www-data
+#- name: Download Tika
+#  get_url: url=http://archive.apache.org/dist/tika/tika-app-1.4.jar dest=/home/solr/bin/tika-app-1.4.jar mode=0755 owner=vagrant group=www-data
 
