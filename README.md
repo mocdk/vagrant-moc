@@ -3,7 +3,7 @@ MOC Vagrant development machine
 
 This repository contains the Vagrant setup for a standrad MOC development machine
 
-The machine uses Ansible for provisioning, and will install Apache 2.4 with php 5.5 using php_fpm. It will also install
+The machine uses Ansible for provisioning, and will install Apache 2.4 with php 5.5/7 using php_fpm. It will also install
 redis, memcache, mongodb, ElasticSearch, MySQL and relevant PHP bindings.
 
 Varnish is installed, and listening on port 80. Apache will listen on port 80.
